@@ -91,8 +91,8 @@ class Events extends Controller
        \think\Loader::import('workerman.globaldata.src.Client',VENDOR_PATH,'.php');
        $global = new Client('127.0.0.1:2207');
        if(!$global->add('user_count', 0))$global->increment('user_count',-1);
-       /*断开连接时销毁定时器*/
-       Timer::del($_SESSION['user_timer']);
+       /*断开连接时销毁定时器
+       Timer::del($_SESSION['user_timer']);*/
 
        $json = json_encode(['status'=>0,'message'=>'已断开连接','controller'=>'index','action'=>'disconnect'],true);
        Gateway::sendToCurrentClient($json);
